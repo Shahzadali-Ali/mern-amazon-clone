@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Header.css";
 
 const Header = () => {
@@ -93,15 +94,19 @@ const Header = () => {
                       <a href="wishlist.html">Wishlist</a>
                     </li>
                     <li className="hidden-xs">
-                      <a href="cart.html">My Cart</a>
+                      <Link to="/cart">My Cart</Link>
                     </li>
                     <li className="hidden-xs">
-                      <a href="checkout.html">Checkout</a>
+                      <Link to="/checkout">Checkout</Link>
                     </li>
                     <li>
-                      <a href="" data-toggle="modal" data-target="#login-modal">
+                      <Link
+                        to="/login"
+                        data-toggle="modal"
+                        data-target="#login-modal"
+                      >
                         Login
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </div>
@@ -167,12 +172,14 @@ const Header = () => {
                         <span className="aa-cartbox-total-price">$500</span>
                       </li>
                     </ul>
-                    <a
+
+                    <Link
                       className="aa-cartbox-checkout aa-primary-btn"
-                      href="checkout.html"
+                      to="/checkout"
                     >
+                      {" "}
                       Checkout
-                    </a>
+                    </Link>
                   </div>
                 </div>
 
