@@ -13,7 +13,7 @@ const Header = () => {
                 <div className="aa-header-top-left">
                   <div className="aa-language">
                     <div className="dropdown">
-                      <a
+                      <Link
                         className="btn dropdown-toggle"
                         href="#"
                         type="button"
@@ -22,25 +22,25 @@ const Header = () => {
                         aria-haspopup="true"
                         aria-expanded="true"
                       >
-                        <img src="img/flag/english.jpg" alt="english flag" />
+                <img src="img/flag/english.jpg" alt="english flag" />
                         ENGLISH
                         <span className="caret"></span>
-                      </a>
+                      </Link>
                       <ul
                         className="dropdown-menu"
                         aria-labelledby="dropdownMenu1"
                       >
                         <li>
-                          <a href="#">
+                          <Link to="#">
                             <img src="img/flag/french.jpg" alt="" />
                             FRENCH
-                          </a>
+                          </Link>
                         </li>
                         <li>
-                          <a href="#">
+                          <Link href="#">
                             <img src="img/flag/english.jpg" alt="" />
                             ENGLISH
-                          </a>
+                          </Link>
                         </li>
                       </ul>
                     </div>
@@ -48,7 +48,7 @@ const Header = () => {
 
                   <div className="aa-currency">
                     <div className="dropdown">
-                      <a
+                      <Link
                         className="btn dropdown-toggle"
                         href="#"
                         type="button"
@@ -59,20 +59,20 @@ const Header = () => {
                       >
                         <i className="fa fa-usd"></i>USD
                         <span className="caret"></span>
-                      </a>
+                      </Link>
                       <ul
                         className="dropdown-menu"
                         aria-labelledby="dropdownMenu1"
                       >
                         <li>
-                          <a href="#">
+                          <Link href="#">
                             <i className="fa fa-euro"></i>EURO
-                          </a>
+                          </Link>
                         </li>
                         <li>
-                          <a href="#">
+                          <Link to="#">
                             <i className="fa fa-jpy"></i>YEN
-                          </a>
+                          </Link>
                         </li>
                       </ul>
                     </div>
@@ -80,7 +80,7 @@ const Header = () => {
 
                   <div className="cellphone hidden-xs">
                     <p>
-                      <span className="fa fa-phone"></span>00-62-658-658
+                      <span className="fa fa-phone"></span>+91-9772-079144
                     </p>
                   </div>
                 </div>
@@ -88,10 +88,10 @@ const Header = () => {
                 <div className="aa-header-top-right">
                   <ul className="aa-head-top-nav-right">
                     <li>
-                      <a href="account.html">My Account</a>
+                      <Link to="/account">My Account</Link>
                     </li>
-                    <li className="hidden-xs">
-                      <a href="wishlist.html">Wishlist</a>
+                    <li className="hidden-xs">                      
+                      <Link to="/wishlist">Wishlist</Link>
                     </li>
                     <li className="hidden-xs">
                       <Link to="/cart">My Cart</Link>
@@ -132,40 +132,40 @@ const Header = () => {
                 {/*Chartbox*/}
 
                 <div className="aa-cartbox">
-                  <a className="aa-cart-link" href="#">
+                  <Link className="aa-cart-link" href="#">
                     <span className="fa fa-shopping-basket"></span>
                     <span className="aa-cart-title">SHOPPING CART</span>
                     <span className="aa-cart-notify">2</span>
-                  </a>
+                  </Link>
                   <div className="aa-cartbox-summary">
                     <ul>
                       <li>
-                        <a className="aa-cartbox-img" href="#">
+                        <Link className="aa-cartbox-img" href="#">
                           <img src="img/woman-small-2.jpg" alt="img" />
-                        </a>
+                        </Link>
                         <div className="aa-cartbox-info">
                           <h4>
-                            <a href="#">Product Name</a>
+                            <Link href="#">Product Name</Link>
                           </h4>
                           <p>1 x $250</p>
                         </div>
-                        <a className="aa-remove-product" href="#">
+                        <Link className="aa-remove-product" href="#">
                           <span className="fa fa-times"></span>
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a className="aa-cartbox-img" href="#">
+                        <Link className="aa-cartbox-img" href="#">
                           <img src="img/woman-small-1.jpg" alt="img" />
-                        </a>
+                        </Link>
                         <div className="aa-cartbox-info">
                           <h4>
-                            <a href="#">Product Name</a>
+                            <Link href="#">Product Name</Link>
                           </h4>
                           <p>1 x $250</p>
                         </div>
-                        <a className="aa-remove-product" href="#">
+                        <Link className="aa-remove-product" href="#">
                           <span className="fa fa-times"></span>
-                        </a>
+                        </Link>
                       </li>
                       <li>
                         <span className="aa-cartbox-total-title">Total</span>

@@ -9,7 +9,8 @@ import Menu from "./components/Menu/Menu";
 import Footer from "./components/Footer/Footer";
 import Checkout from "./pages/Checkout/Checkout";
 import Cart from "./pages/Cart/Cart";
-
+import Wishlist from "./pages/Wishlist/Wishlist";
+import Account from "./pages/Account/Account";
 function App() {
   return (
     <Router>
@@ -39,6 +40,16 @@ function App() {
         </Route>
         <Route path="/cart">
           <Cart />
+
+        </Route>
+        <Route path="/wishlist">
+          <Wishlist />
+
+        </Route>
+
+        <Route path="/account">
+          <Account />
+
         </Route>
       </Switch>
       <Footer />
