@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Product from "../Product/Product";
+import Products from "../../FakeProducts/FakeProducts";
 
 const HomeProducts = () => {
-  const pro = [1, 2, 3, 4, 5, 6];
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    setProducts(Products);
+  }, []);
 
   return (
     <section id="aa-product">
@@ -43,8 +48,8 @@ const HomeProducts = () => {
                     <div className="tab-pane fade in active" id="men">
                       <ul className="aa-product-catg">
                         {/*start single product item*/}
-                        {pro.map((p) => (
-                          <Product />
+                        {products.map((product, index) => (
+                          <Product key={index} product={product} />
                         ))}
                       </ul>
 
@@ -58,8 +63,8 @@ const HomeProducts = () => {
                     <div className="tab-pane fade" id="women">
                       <ul className="aa-product-catg">
                         {/*start single product item*/}
-                        {pro.map((p) => (
-                          <Product />
+                        {products.map((product, index) => (
+                          <Product key={index} product={product} />
                         ))}
                       </ul>
                       <a className="aa-browse-btn" href="#">
@@ -72,8 +77,8 @@ const HomeProducts = () => {
                     <div className="tab-pane fade" id="sports">
                       <ul className="aa-product-catg">
                         {/*start single product item*/}
-                        {pro.map((p) => (
-                          <Product />
+                        {products.map((product, index) => (
+                          <Product key={index} product={product} />
                         ))}
                       </ul>
 
@@ -87,8 +92,8 @@ const HomeProducts = () => {
                     <div className="tab-pane fade" id="electronics">
                       <ul className="aa-product-catg">
                         {/*start single product item*/}
-                        {pro.map((p) => (
-                          <Product />
+                        {products.map((product, index) => (
+                          <Product key={index} product={product} />
                         ))}
                       </ul>
                       <a className="aa-browse-btn" href="#">

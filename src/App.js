@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./App.css";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -11,7 +11,12 @@ import Checkout from "./pages/Checkout/Checkout";
 import Cart from "./pages/Cart/Cart";
 import Wishlist from "./pages/Wishlist/Wishlist";
 import Account from "./pages/Account/Account";
+
+import { useStateValue } from "./ContextApi/StateProvider";
+
 function App() {
+  const [{ user, cart }, dispatch] = useStateValue();
+
   return (
     <Router>
       {/* Loading and end to scroll */}
@@ -40,16 +45,13 @@ function App() {
         </Route>
         <Route path="/cart">
           <Cart />
-
         </Route>
         <Route path="/wishlist">
           <Wishlist />
-
         </Route>
 
         <Route path="/account">
           <Account />
-
         </Route>
       </Switch>
       <Footer />

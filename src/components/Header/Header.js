@@ -1,8 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useStateValue } from "../../ContextApi/StateProvider";
+import { cartTotal } from "../../ContextApi/reducer";
 import "./Header.css";
 
 const Header = () => {
+  const [{ cart }, dispatch] = useStateValue();
+
+  const removeCartItem = (id) => {
+    dispatch({
+      type: "REMOVE_CART_ITEM",
+      id: id,
+    });
+  };
+
   return (
     <header id="aa-header">
       <div className="aa-header-top">
@@ -22,7 +33,7 @@ const Header = () => {
                         aria-haspopup="true"
                         aria-expanded="true"
                       >
-                <img src="img/flag/english.jpg" alt="english flag" />
+                        <img src="img/flag/english.jpg" alt="english flag" />
                         ENGLISH
                         <span className="caret"></span>
                       </Link>
@@ -90,7 +101,7 @@ const Header = () => {
                     <li>
                       <Link to="/account">My Account</Link>
                     </li>
-                    <li className="hidden-xs">                      
+                    <li className="hidden-xs">
                       <Link to="/wishlist">Wishlist</Link>
                     </li>
                     <li className="hidden-xs">
@@ -135,41 +146,34 @@ const Header = () => {
                   <Link className="aa-cart-link" href="#">
                     <span className="fa fa-shopping-basket"></span>
                     <span className="aa-cart-title">SHOPPING CART</span>
-                    <span className="aa-cart-notify">2</span>
+                    <span className="aa-cart-notify">{cart.length}</span>
                   </Link>
                   <div className="aa-cartbox-summary">
                     <ul>
-                      <li>
-                        <Link className="aa-cartbox-img" href="#">
-                          <img src="img/woman-small-2.jpg" alt="img" />
-                        </Link>
-                        <div className="aa-cartbox-info">
-                          <h4>
-                            <Link href="#">Product Name</Link>
-                          </h4>
-                          <p>1 x $250</p>
-                        </div>
-                        <Link className="aa-remove-product" href="#">
-                          <span className="fa fa-times"></span>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link className="aa-cartbox-img" href="#">
-                          <img src="img/woman-small-1.jpg" alt="img" />
-                        </Link>
-                        <div className="aa-cartbox-info">
-                          <h4>
-                            <Link href="#">Product Name</Link>
-                          </h4>
-                          <p>1 x $250</p>
-                        </div>
-                        <Link className="aa-remove-product" href="#">
-                          <span className="fa fa-times"></span>
-                        </Link>
-                      </li>
+                      {cart.map((product) => (
+                        <li>
+                          <Link className="aa-cartbox-img" href="#">
+                            <img src="img/woman-small-2.jpg" alt="img" />
+                          </Link>
+                          <div className="aa-cartbox-info">
+                            <h4>
+                              <Link href="#">{product.name}</Link>
+                            </h4>
+                            <p>${product.newPrice}</p>
+                          </div>
+                          <Link
+                            onClick={() => removeCartItem(product.id)}
+                            className="aa-remove-product"
+                          >
+                            <span className="fa fa-times"></span>
+                          </Link>
+                        </li>
+                      ))}
                       <li>
                         <span className="aa-cartbox-total-title">Total</span>
-                        <span className="aa-cartbox-total-price">$500</span>
+                        <span className="aa-cartbox-total-price">
+                          ${cartTotal(cart)}
+                        </span>
                       </li>
                     </ul>
 

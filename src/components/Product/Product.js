@@ -1,22 +1,37 @@
 import React from "react";
+import { useStateValue } from "../../ContextApi/StateProvider";
 
-const Product = () => {
+const Product = ({ product }) => {
+  const [{ cart }, dispatch] = useStateValue();
+
+  const addToCart = (p) => {
+    dispatch({
+      type: "ADD_TO_CART",
+      product: p,
+    });
+  };
+
   return (
     <li>
       <figure>
         <a className="aa-product-img" href="#">
           <img src="img/man/polo-shirt-2.png" alt="polo shirt img" />
         </a>
-        <a className="aa-add-card-btn" href="#">
-          <span className="fa fa-shopping-cart"></span>Add To Cart
-        </a>
+        <button
+          disabled={cart.includes(product)}
+          className="btn-block aa-add-card-btn"
+          onClick={() => addToCart(product)}
+        >
+          <span className="fa fa-shopping-cart"></span>
+          {cart.includes(product) ? "Already Added" : "Add to Cart"}
+        </button>
         <figcaption>
           <h4 className="aa-product-title">
-            <a href="#">Polo T-Shirt</a>
+            <a href="#">{product.name}</a>
           </h4>
-          <span className="aa-product-price">$45.50</span>
+          <span className="aa-product-price">${product.newPrice}</span>
           <span className="aa-product-price">
-            <del>$65.50</del>
+            <del>${product.oldPrice}</del>
           </span>
         </figcaption>
       </figure>
