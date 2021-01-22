@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -13,9 +13,29 @@ import Wishlist from "./pages/Wishlist/Wishlist";
 import Account from "./pages/Account/Account";
 
 import { useStateValue } from "./ContextApi/StateProvider";
+import { auth } from "./FirebaseConfig/Config";
 
 function App() {
   const [{ user, cart }, dispatch] = useStateValue();
+
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        dispatch({
+          type: "SET_USER",
+          user: {
+            uid: user.uid,
+            email: user.email,
+          },
+        });
+      } else {
+        dispatch({
+          type: "SET_USER",
+          user: null,
+        });
+      }
+    });
+  }, []);
 
   return (
     <Router>

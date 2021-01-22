@@ -2,16 +2,30 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useStateValue } from "../../ContextApi/StateProvider";
 import { cartTotal } from "../../ContextApi/reducer";
+import { Avatar } from "@material-ui/core";
 import "./Header.css";
+import { auth } from "../../FirebaseConfig/Config";
 
 const Header = () => {
-  const [{ cart }, dispatch] = useStateValue();
+  const [{ user, cart }, dispatch] = useStateValue();
 
   const removeCartItem = (id) => {
     dispatch({
       type: "REMOVE_CART_ITEM",
       id: id,
     });
+  };
+
+  const logout = () => {
+    auth
+      .signOut()
+      .then(() =>
+        dispatch({
+          type: "SET_USER",
+          user: null,
+        })
+      )
+      .catch((err) => window.alert(err.message));
   };
 
   return (
@@ -99,7 +113,11 @@ const Header = () => {
                 <div className="aa-header-top-right">
                   <ul className="aa-head-top-nav-right">
                     <li>
-                      <Link to="/account">My Account</Link>
+                      {user?.email ? (
+                        <Link to="/account">{user.email}</Link>
+                      ) : (
+                        <Link to="/login">My account</Link>
+                      )}
                     </li>
                     <li className="hidden-xs">
                       <Link to="/wishlist">Wishlist</Link>
@@ -111,13 +129,23 @@ const Header = () => {
                       <Link to="/checkout">Checkout</Link>
                     </li>
                     <li>
-                      <Link
-                        to="/login"
-                        data-toggle="modal"
-                        data-target="#login-modal"
-                      >
-                        Login
-                      </Link>
+                      {user?.email ? (
+                        <button
+                          onClick={(e) => logout()}
+                          className="btn btn-danger"
+                        >
+                          {" "}
+                          Logout{" "}
+                        </button>
+                      ) : (
+                        <Link
+                          to="/login"
+                          data-toggle="modal"
+                          data-target="#login-modal"
+                        >
+                          Login
+                        </Link>
+                      )}
                     </li>
                   </ul>
                 </div>
